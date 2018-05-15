@@ -5,14 +5,14 @@ import React, { Component } from 'react';
 
 class People extends Component {
 
-    people = []
+    people = [];
 
     constructor(props) {
         super(props);
-        this.state = {
+        this.setState({
             title: '',
             people: []
-        }
+        })
     }
 
     componentDidMount() {
@@ -23,7 +23,6 @@ class People extends Component {
             title: this.props.title,
             people: this.props.people
         })
-
 
     }
 
@@ -38,10 +37,10 @@ class People extends Component {
                 </td>
             </tr>
         )
-    }
+    };
 
     render() {
-        this.people = this.props.people;
+        let people = this.props.people;
         return(
             <div className="card">
                 <div className="card-body">
@@ -54,7 +53,7 @@ class People extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.people.map((person, i) => {
+                            {people.map((person, i) => {
                                 return this.renderData(person, i);
                             })}
                         </tbody>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Location from './components/Location';
+import LocationContainer from './containers/locationContainer';
 import PeopleContainer from './containers/PeopleContainer'
 
 class App extends Component {
@@ -41,7 +41,7 @@ class App extends Component {
           <div className="alert alert-success" role="alert">
             <h2>{this.state.time}</h2>
           </div>
-            <Location />
+            <LocationContainer />
           </div>
           <div className="col">
             <PeopleContainer />

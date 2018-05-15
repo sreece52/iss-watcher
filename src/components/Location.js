@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import axios from 'axios';
-
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 
 class Location extends Component {
@@ -17,22 +15,16 @@ class Location extends Component {
     }
 
     componentDidMount() {
-        let location = null;
         setInterval(() => {
-            axios.get('http://api.open-notify.org/iss-now.json', {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
-            })
-            .then(function(res){
-                location = res.data.iss_position;
-            })
-            .catch(function(err){
-                console.log(err);
-            })
-            if(location !== null) {
+            this.props.getLocation();
+
+            this.setState({
+                lat: this.props.latitude,
+                lng: this.props.longitude,
+            });
+
+            if(this.state.lat != null && this.state.lng != null) {
                 this.setState({
-                    lat: location.latitude,
-                    lng: location.longitude,
                     showMap: true
                 })
             }
@@ -51,7 +43,7 @@ class Location extends Component {
             return (
                 <div>
                     <Map center={position} 
-                            zoom={this.state.zoom} 
+                            zoom={this.state.zoom}
                             style={{height:"500px"}}
                             >
                         
